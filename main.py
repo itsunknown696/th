@@ -1,5 +1,5 @@
 from telegram import Update, Bot
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext, ConversationHandler
+from telegram.ext import Updater, CommandHandler, MessageHandler, filters, CallbackContext, ConversationHandler
 import html
 import os
 from datetime import datetime
@@ -8,8 +8,8 @@ from datetime import datetime
 FILENAME, TITLE, GLITCH, CLASS, HEADER, METHOD_CHOICE, BUTTON_PAIRS, LINE_RANGE = range(8)
 
 # Configuration
-BOT_TOKEN = "8041495553:AAF7xHTNABmUPwnJX6usZkoQyUWKTfr5QBY"
-LOG_CHANNEL_ID = -1002653762413
+BOT_TOKEN = "7782085620:AAENkSow5fgy0UdPr_75exMmK_ZHU2J9rUQ"
+LOG_CHANNEL_ID = -1002278484608
 user_data = {}
 
 def start(update: Update, context: CallbackContext) -> None:
@@ -752,16 +752,16 @@ def main() -> None:
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler('html', start_process)],
         states={
-            FILENAME: [MessageHandler(Filters.text & ~Filters.command, get_filename)],
-            TITLE: [MessageHandler(Filters.text & ~Filters.command, get_title)],
-            GLITCH: [MessageHandler(Filters.text & ~Filters.command, get_glitch_text)],
-            CLASS: [MessageHandler(Filters.text & ~Filters.command, get_class)],
-            HEADER: [MessageHandler(Filters.text & ~Filters.command, get_header)],
-            METHOD_CHOICE: [MessageHandler(Filters.text & ~Filters.command, handle_method_choice)],
-            LINE_RANGE: [MessageHandler(Filters.document, get_line_range)],
+            FILENAME: [MessageHandler(filters.TEXT & ~filters.COMMAND, get_filename)],
+            TITLE: [MessageHandler(filters.TEXT & ~filters.COMMAND, get_title)],
+            GLITCH: [MessageHandler(filters.TEXT & ~filters.COMMAND, get_glitch_text)],
+            CLASS: [MessageHandler(filters.TEXT & ~filters.COMMAND, get_class)],
+            HEADER: [MessageHandler(filters.TEXT & ~filters.COMMAND, get_header)],
+            METHOD_CHOICE: [MessageHandler(filters.TEXT & ~filters.COMMAND, handle_method_choice)],
+            LINE_RANGE: [MessageHandler(filters.Document.ALL, get_line_range)],
             BUTTON_PAIRS: [
-                MessageHandler(Filters.text & ~Filters.command, get_button_pairs),
-                MessageHandler(Filters.document, get_button_pairs)
+                MessageHandler(filters.TEXT & ~filters.COMMAND, get_button_pairs),
+                MessageHandler(filters.Document.ALL, get_button_pairs)
             ],
         },
         fallbacks=[CommandHandler('cancel', cancel)],
