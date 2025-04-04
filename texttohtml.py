@@ -8,8 +8,8 @@ from datetime import datetime
 FILENAME, TITLE, GLITCH, CLASS, HEADER, METHOD_CHOICE, BUTTON_PAIRS, LINE_RANGE = range(8)
 
 # Configuration
-BOT_TOKEN = "7782085620:AAENkSow5fgy0UdPr_75exMmK_ZHU2J9rUQ"
-LOG_CHANNEL_ID = -1002278484608
+BOT_TOKEN = "8041495553:AAF7xHTNABmUPwnJX6usZkoQyUWKTfr5QBY"
+LOG_CHANNEL_ID = -1002653762413
 user_data = {}
 
 def start(update: Update, context: CallbackContext) -> None:
